@@ -10,8 +10,13 @@ repositories {
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-task stage(dependsOn: ['build', 'clean'])
+task stage(dependsOn: ['build', 'clean', 'copyToLib'])
 build.mustRunAfter clean
+
+task copyToLib(type: Copy) {
+	into "$buildDir/libs"
+	from configurations.runtime
+}
 
 eclipse {
 	wtp {
@@ -36,6 +41,7 @@ dependencies {
     
     // Spring
     compile 'org.springframework:spring-webmvc:4.3.3.RELEASE'
+    compile 'com.github.jsimone:webapp-runner:8.5.5.2'
     
     // Spring security
     compile 'org.springframework.security:spring-security-core:4.1.1.RELEASE'
