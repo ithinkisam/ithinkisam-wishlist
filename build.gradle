@@ -1,0 +1,66 @@
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+eclipse {
+	wtp {
+		component {
+			contextPath = 'wishlist'
+		}
+	}
+}
+
+sourceSets {
+	main {
+		java.srcDir 'src/main/java'
+		resources.srcDir 'src/main/resources'
+	}
+	test {
+		java.srcDir 'src/test/java'
+		resources.srcDir 'src/test/resources'
+	}
+}
+
+dependencies {
+    
+    // Spring
+    compile 'org.springframework:spring-webmvc:4.3.3.RELEASE'
+    
+    // Spring security
+    compile 'org.springframework.security:spring-security-core:4.1.1.RELEASE'
+    
+    // View
+    runtime 'commons-lang:commons-lang:2.6'
+    compile 'javax.servlet:javax.servlet-api:3.1.0'
+    compile 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.1'
+    compile 'javax.servlet:jstl:1.2'
+    
+    // Tiles
+    compile 'org.apache.tiles:tiles-api:3.0.7'
+    compile 'org.apache.tiles:tiles-core:3.0.7'
+    compile 'org.apache.tiles:tiles-jsp:3.0.7'
+    compile 'org.apache.tiles:tiles-servlet:3.0.7'
+    compile 'org.apache.tiles:tiles-template:3.0.7'
+    
+    // Logging
+    compile 'org.slf4j:slf4j-api:1.7.21'
+    runtime 'ch.qos.logback:logback-classic:1.1.7'
+    runtime 'ch.qos.logback:logback-core:1.1.7'
+    
+    // Jackson
+    runtime 'com.fasterxml.jackson.core:jackson-databind:2.8.1'
+    runtime 'com.jayway.jsonpath:json-path:2.2.0'
+    
+    // Testing
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-all:1.10.19'
+    testCompile 'org.springframework:spring-test:4.3.2.RELEASE'
+}

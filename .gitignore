@@ -1,3 +1,9 @@
+.gradle
+.settings
+.project
+.classpath
+bin/**
+
 *.class
 
 # Mobile Tools for Java (J2ME)
