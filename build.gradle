@@ -41,7 +41,10 @@ dependencies {
     
     // Spring
     compile 'org.springframework:spring-webmvc:4.3.3.RELEASE'
+    compile 'org.springframework:spring-jdbc:4.3.4.RELEASE'
+    
     compile 'com.github.jsimone:webapp-runner:8.5.5.2'
+    compile 'commons-dbcp:commons-dbcp:1.4'
     
     // Spring security
     compile 'org.springframework.security:spring-security-core:4.1.1.RELEASE'

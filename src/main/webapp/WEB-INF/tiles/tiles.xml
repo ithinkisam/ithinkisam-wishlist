@@ -27,5 +27,10 @@
 		<put-attribute name="title" value="Wishlist - Home" />
 		<put-attribute name="content" value="/WEB-INF/views/jsp/templates/home.jsp" />
 	</definition>
+	
+	<definition name="test" extends="base">
+		<put-attribute name="title" value="Wishlist - Test" />
+		<put-attribute name="content" value="/WEB-INF/views/jsp/templates/test.jsp" />
+	</definition>
 
 </tiles-definitions>
