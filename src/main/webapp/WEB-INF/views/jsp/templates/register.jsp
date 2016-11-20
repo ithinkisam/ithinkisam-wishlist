@@ -3,30 +3,36 @@
 <div class="row">
 	<div class="offset-md-3 col-md-6">
 		<h2 class="text-xs-center mb-1">Registration</h2>
-		<form:form action="${pageContext.request.contextPath}/register" method="post">
+		<form:form modelAttribute="newUser" action="${pageContext.request.contextPath}/register" method="post">
+			<form:errors element="div" cssClass="form-group row has-danger" />
 			<div class="form-group row">
-				<label for="username" class="sr-only">Username</label>
-				<input type="text" class="form-control" id="username" name="username" placeholder="Username">
+				<form:label path="username" class="sr-only">Username</form:label>
+				<form:input class="form-control" path="username" placeholder="Username" autofocus="true" />
+				<form:errors path="username" element="div" cssClass="form-control-feedback" />
 			</div>
 			<div class="form-group row">
-				<label for="firstName" class="sr-only">First Name</label>
-				<input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name">
+				<form:label path="firstName" class="sr-only">First Name</form:label>
+				<form:input class="form-control" path="firstName" placeholder="First Name" />
+				<form:errors path="firstName" element="div" cssClass="form-control-feedback" />
 			</div>
 			<div class="form-group row">
-				<label for="lastName" class="sr-only">Last Name</label>
-				<input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name">
+				<form:label path="lastName" class="sr-only">Last Name</form:label>
+				<form:input class="form-control" path="lastName" placeholder="Last Name" />
+				<form:errors path="lastName" element="div" cssClass="form-control-feedback" />
 			</div>
 			<div class="form-group row">
-				<label for="email" class="sr-only">Email</label>
-				<input type="email" class="form-control" id="email" name="email" placeholder="Email">
+				<form:label path="email" class="sr-only">Email</form:label>
+				<form:input type="email" class="form-control" path="email" placeholder="Email" />
+				<form:errors path="email" element="div" cssClass="form-control-feedback" />
 			</div>
 			<div class="form-group row">
-				<label for="password" class="sr-only">Password</label>
-				<input type="password" class="form-control" id="password" name="password" placeholder="Password">
+				<form:label path="password" class="sr-only">Password</form:label>
+				<form:input type="password" class="form-control" path="password" placeholder="Password" />
+				<form:errors path="password" element="div" cssClass="form-control-feedback" />
 			</div>
 			<div class="form-group row">
-				<label for="passwordConfirmation" class="sr-only">Confirm Password</label>
-				<input type="password" class="form-control" id="passwordConfirmation" name="passwordConfirmation" placeholder="Confirm Password">
+				<form:label path="matchingPassword" class="sr-only">Confirm Password</form:label>
+				<form:input type="password" class="form-control" path="matchingPassword" placeholder="Confirm Password" />
 			</div>
 			
 			<div class="form-group row">

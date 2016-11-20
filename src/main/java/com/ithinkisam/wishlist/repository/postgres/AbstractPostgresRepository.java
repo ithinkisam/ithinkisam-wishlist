@@ -1,15 +1,16 @@
-package com.ithinkisam.wishlist.service.provider;
+package com.ithinkisam.wishlist.repository.postgres;
 
-import org.apache.commons.dbcp.BasicDataSource;
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
-public class AbstractServiceProvider {
+public class AbstractPostgresRepository {
 
 	protected NamedParameterJdbcTemplate jdbcTemplate;
 	
 	@Autowired
-	public void setDataSource(BasicDataSource dataSource) {
+	public void setDataSource(DataSource dataSource) {
 		jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
 	}
 	

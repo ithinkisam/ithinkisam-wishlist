@@ -1,27 +1,16 @@
 package com.ithinkisam.wishlist.domain;
 
-import java.util.List;
-
-public class User {
+public class NewUser {
 
 	private String username;
 	private String password;
+	private String matchingPassword;
 	private String firstName;
 	private String lastName;
 	private String email;
-	private Boolean enabled;
-	private List<String> roles;
 
-	public User() {
+	public NewUser() {
 		/* empty */
-	}
-
-	public User(String username, String firstName, String lastName, String email, Boolean enabled) {
-		this.username = username;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.enabled = enabled;
 	}
 
 	/**
@@ -52,6 +41,21 @@ public class User {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	/**
+	 * @return the matchingPassword
+	 */
+	public String getMatchingPassword() {
+		return matchingPassword;
+	}
+
+	/**
+	 * @param matchingPassword
+	 *            the matchingPassword to set
+	 */
+	public void setMatchingPassword(String matchingPassword) {
+		this.matchingPassword = matchingPassword;
 	}
 
 	/**
@@ -99,36 +103,6 @@ public class User {
 		this.email = email;
 	}
 
-	/**
-	 * @return the enabled
-	 */
-	public Boolean getEnabled() {
-		return enabled;
-	}
-
-	/**
-	 * @param enabled
-	 *            the enabled to set
-	 */
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
-	}
-
-	/**
-	 * @return the roles
-	 */
-	public List<String> getRoles() {
-		return roles;
-	}
-
-	/**
-	 * @param roles
-	 *            the roles to set
-	 */
-	public void setRoles(List<String> roles) {
-		this.roles = roles;
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -155,7 +129,7 @@ public class User {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		NewUser other = (NewUser) obj;
 		if (email == null) {
 			if (other.email != null)
 				return false;
@@ -171,8 +145,8 @@ public class User {
 	 */
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", password=" + password + ", firstName=" + firstName + ", lastName="
-				+ lastName + ", email=" + email + ", enabled=" + enabled + ", roles=" + roles + "]";
+		return "NewUser [username=" + username + ", password=" + password + ", matchingPassword=" + matchingPassword
+				+ ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
 	}
 
 }

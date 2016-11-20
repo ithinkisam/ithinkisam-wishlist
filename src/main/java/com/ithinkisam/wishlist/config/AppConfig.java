@@ -16,7 +16,7 @@ import org.springframework.web.servlet.view.tiles3.TilesView;
 @EnableWebMvc
 @Configuration
 @ComponentScan(basePackages = { "com.ithinkisam.wishlist.web.*" })
-@Import({ ServiceConfig.class, SecurityConfig.class })
+@Import({ RepositoryConfig.class, ServiceConfig.class, SecurityConfig.class })
 public class AppConfig extends WebMvcConfigurerAdapter {
 
 	@Override

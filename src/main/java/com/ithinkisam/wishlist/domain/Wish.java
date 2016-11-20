@@ -6,15 +6,20 @@ import java.util.Set;
 public class Wish {
 
 	private int id;
-	private User user;
+	private String username;
 	private String description;
+	private boolean purchased;
 	private Set<URL> tips;
 
-	public Wish(int id, User user, String description, Set<URL> tips) {
+	public Wish() {
+		/* empty */
+	}
+
+	public Wish(int id, String username, String description, boolean purchased) {
 		this.id = id;
-		this.user = user;
+		this.username = username;
 		this.description = description;
-		this.tips = tips;
+		this.purchased = purchased;
 	}
 
 	/**
@@ -25,10 +30,26 @@ public class Wish {
 	}
 
 	/**
-	 * @return the user
+	 * @param id
+	 *            the id to set
 	 */
-	public User getUser() {
-		return user;
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the username
+	 */
+	public String getUsername() {
+		return username;
+	}
+
+	/**
+	 * @param username
+	 *            the username to set
+	 */
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	/**
@@ -39,10 +60,41 @@ public class Wish {
 	}
 
 	/**
+	 * @param description
+	 *            the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	/**
+	 * @return the purchased
+	 */
+	public boolean isPurchased() {
+		return purchased;
+	}
+
+	/**
+	 * @param purchased
+	 *            the purchased to set
+	 */
+	public void setPurchased(boolean purchased) {
+		this.purchased = purchased;
+	}
+
+	/**
 	 * @return the tips
 	 */
 	public Set<URL> getTips() {
 		return tips;
+	}
+
+	/**
+	 * @param tips
+	 *            the tips to set
+	 */
+	public void setTips(Set<URL> tips) {
+		this.tips = tips;
 	}
 
 	/*
@@ -84,7 +136,7 @@ public class Wish {
 	 */
 	@Override
 	public String toString() {
-		return "Wish [id=" + id + ", user=" + user + ", description=" + description + ", tips=" + tips + "]";
+		return "Wish [id=" + id + ", username=" + username + ", description=" + description + ", tips=" + tips + "]";
 	}
 
 }
