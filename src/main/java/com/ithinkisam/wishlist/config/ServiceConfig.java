@@ -1,4 +1,4 @@
-package com.ithinkisam.wishlist;
+package com.ithinkisam.wishlist.config;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -24,6 +24,7 @@ public class ServiceConfig {
         basicDataSource.setUrl(dbUrl);
         basicDataSource.setUsername(username);
         basicDataSource.setPassword(password);
+        basicDataSource.setDriverClassName("org.postgresql.Driver");
 
         return basicDataSource;
 	}

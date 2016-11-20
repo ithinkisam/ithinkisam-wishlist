@@ -25,7 +25,7 @@
 		</c:forEach>
 		
 		<style>
-			.custom-container-padding { padding-top: 60px; }
+			.custom-container-padding { padding-top: 60px; padding-bottom: 60px; }
 		</style>
 		
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -40,7 +40,7 @@
 		
 		<tiles:insertAttribute name="header" />
 		
-		<div class="container-fluid custom-container-padding">
+		<div class="container custom-container-padding">
 			<tiles:insertAttribute name="content" />
 		</div>
 		

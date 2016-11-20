@@ -2,30 +2,54 @@ package com.ithinkisam.wishlist.domain;
 
 public class User {
 
-	private int id;
-	private String emailAddress;
+	private String username;
+	private String password;
 	private String firstName;
 	private String lastName;
+	private String email;
+	private Boolean enabled;
 
-	public User(int id, String emailAddress, String firstName, String lastName) {
-		this.id = id;
-		this.emailAddress = emailAddress;
+	public User() {
+		/* empty */
+	}
+
+	public User(String username, String password, String firstName, String lastName, String email, Boolean enabled) {
+		this.username = username;
+		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.email = email;
+		this.enabled = enabled;
 	}
 
 	/**
-	 * @return the id
+	 * @return the username
 	 */
-	public int getId() {
-		return id;
+	public String getUsername() {
+		return username;
 	}
 
 	/**
-	 * @return the emailAddress
+	 * @param username
+	 *            the username to set
 	 */
-	public String getEmailAddress() {
-		return emailAddress;
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * @param password
+	 *            the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	/**
@@ -36,10 +60,56 @@ public class User {
 	}
 
 	/**
+	 * @param firstName
+	 *            the firstName to set
+	 */
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	/**
 	 * @return the lastName
 	 */
 	public String getLastName() {
 		return lastName;
+	}
+
+	/**
+	 * @param lastName
+	 *            the lastName to set
+	 */
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/**
+	 * @param email
+	 *            the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	/**
+	 * @return the enabled
+	 */
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	/**
+	 * @param enabled
+	 *            the enabled to set
+	 */
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	/*
@@ -51,7 +121,7 @@ public class User {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((emailAddress == null) ? 0 : emailAddress.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		return result;
 	}
 
@@ -69,10 +139,10 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (emailAddress == null) {
-			if (other.emailAddress != null)
+		if (email == null) {
+			if (other.email != null)
 				return false;
-		} else if (!emailAddress.equals(other.emailAddress))
+		} else if (!email.equals(other.email))
 			return false;
 		return true;
 	}
@@ -84,8 +154,8 @@ public class User {
 	 */
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", emailAddress=" + emailAddress + ", firstName=" + firstName + ", lastName="
-				+ lastName + "]";
+		return "User [username=" + username + ", password=" + password + ", firstName=" + firstName + ", lastName="
+				+ lastName + ", email=" + email + "]";
 	}
 
 }

@@ -1,8 +1,9 @@
-package com.ithinkisam.wishlist;
+package com.ithinkisam.wishlist.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -14,8 +15,9 @@ import org.springframework.web.servlet.view.tiles3.TilesView;
 
 @EnableWebMvc
 @Configuration
-@ComponentScan(basePackages = { "com.ithinkisam.wishlist.web" })
-public class MvcConfig extends WebMvcConfigurerAdapter {
+@ComponentScan(basePackages = { "com.ithinkisam.wishlist.web.*" })
+@Import({ ServiceConfig.class, SecurityConfig.class })
+public class AppConfig extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {

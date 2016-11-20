@@ -23,6 +23,18 @@
 		<put-list-attribute name="appJavascripts"></put-list-attribute>
 	</definition>
 	
+	<definition name="login" extends="base">
+		<put-attribute name="title" value="Login" />
+		<put-attribute name="header"  value="/WEB-INF/views/jsp/templates/common/header-no-nav.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/jsp/templates/login.jsp" />
+	</definition>
+	
+	<definition name="registration" extends="base">
+		<put-attribute name="title" value="Register" />
+		<put-attribute name="header"  value="/WEB-INF/views/jsp/templates/common/header-no-nav.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/jsp/templates/register.jsp" />
+	</definition>
+	
 	<definition name="home" extends="base">
 		<put-attribute name="title" value="Wishlist - Home" />
 		<put-attribute name="content" value="/WEB-INF/views/jsp/templates/home.jsp" />
