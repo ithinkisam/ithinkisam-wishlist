@@ -1,4 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+
+<tiles:insertAttribute name="messages" />
 
 <div class="row">
 	<div class="offset-lg-4 col-lg-4 offset-md-3 col-md-6 offset-sm-2 col-sm-8">
@@ -6,7 +9,7 @@
 			<h2 class="text-xs-center">Sign-in</h2>
 			
 			<div class="form-group">
-				<label for="username">Email Address</label>
+				<label for="username">Username</label>
 				<input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
 			</div>
 			

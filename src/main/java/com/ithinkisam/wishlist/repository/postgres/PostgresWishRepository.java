@@ -2,6 +2,7 @@ package com.ithinkisam.wishlist.repository.postgres;
 
 import java.util.List;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -21,7 +22,11 @@ public class PostgresWishRepository extends AbstractPostgresRepository implement
 		SqlParameterSource parameters = new MapSqlParameterSource()
 				.addValue("id", id);
 		
-		return jdbcTemplate.queryForObject(sql, parameters, PostgresWishMapper.DEFAULT);
+		try {
+			return jdbcTemplate.queryForObject(sql, parameters, PostgresWishMapper.DEFAULT);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 
 	@Override
@@ -31,7 +36,7 @@ public class PostgresWishRepository extends AbstractPostgresRepository implement
 		SqlParameterSource parameters = new MapSqlParameterSource()
 				.addValue("username", username);
 		
-		return jdbcTemplate.queryForList(sql, parameters, Wish.class);
+		return jdbcTemplate.query(sql, parameters, PostgresWishMapper.DEFAULT);
 	}
 
 	@Override
@@ -41,7 +46,7 @@ public class PostgresWishRepository extends AbstractPostgresRepository implement
 		SqlParameterSource parameters = new MapSqlParameterSource()
 				.addValue("username", username);
 		
-		return jdbcTemplate.queryForList(sql, parameters, Wish.class);
+		return jdbcTemplate.query(sql, parameters, PostgresWishMapper.DEFAULT);
 	}
 
 	@Override
@@ -53,8 +58,7 @@ public class PostgresWishRepository extends AbstractPostgresRepository implement
 				.addValue("description", description);
 		
 		KeyHolder keyHolder = new GeneratedKeyHolder();
-		jdbcTemplate.update(sql, parameters, keyHolder);
-		
+		jdbcTemplate.update(sql, parameters, keyHolder, new String[] { "wid" });
 		return findById(keyHolder.getKey().intValue());
 	}
 

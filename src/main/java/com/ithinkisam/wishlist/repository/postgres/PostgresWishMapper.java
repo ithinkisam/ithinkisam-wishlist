@@ -16,7 +16,7 @@ public class PostgresWishMapper implements RowMapper<Wish> {
 		return new Wish(rs.getInt("wid"),
 				rs.getString("username"),
 				rs.getString("description"),
-				rs.getString("purchaser") != null);
+				rs.getString("fulfiller") != null);
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.ithinkisam.wishlist.service.provider;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -18,18 +20,61 @@ public class WishProviderImpl implements WishProvider {
 	private WishRepository wishRepository;
 
 	@Override
-	public void add(String description, User user) {
-		wishRepository.save(description, user.getUsername());
+	public Wish getById(int id) {
+		return wishRepository.findById(id);
+	}
+
+	@Override
+	public List<Wish> getByUser(User user) {
+		return wishRepository.findByUser(user.getUsername());
+	}
+
+	@Override
+	public List<Wish> getByFulfiller(User user) {
+		return wishRepository.findByFulfiller(user.getUsername());
+	}
+
+	@Override
+	public Wish add(String description, User user) {
+		return wishRepository.save(description, user.getUsername());
 	}
 
 	@Override
 	public void update(Wish wish, User user) {
+		Wish exists = wishRepository.findById(wish.getId());
+		if (exists == null) {
+			// TODO throw exception
+		}
+		if (!exists.getUsername().equals(user.getUsername())) {
+			// TODO throw exception
+		}
 		wishRepository.update(wish.getId(), wish.getDescription());
 	}
 
 	@Override
-	public void remove(int id, User user) {
-		
+	public void fulfill(Wish wish, User user) {
+		Wish existing = wishRepository.findById(wish.getId());
+		if (existing == null) {
+			// TODO throw exception
+		}
+		if (existing.getUsername().equals(user.getUsername())) {
+			// TODO throw exception
+			// cannot fulfill own wish
+		}
+		wishRepository.fulfill(wish.getId(), user.getUsername());
 	}
-	
+
+	@Override
+	public void unfulfill(Wish wish, User user) {
+		Wish existing = wishRepository.findById(wish.getId());
+		if (existing == null) {
+			// TODO throw exception
+		}
+		if (existing.getUsername().equals(user.getUsername())) {
+			// TODO throw exception
+			// cannot fulfill own wish
+		}
+		wishRepository.unfulfill(wish.getId());
+	}
+
 }

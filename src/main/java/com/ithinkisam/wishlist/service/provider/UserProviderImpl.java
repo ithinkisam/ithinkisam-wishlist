@@ -59,6 +59,11 @@ public class UserProviderImpl implements UserProvider {
 		userRepository.enable(username);
 	}
 
+	@Override
+	public User getByUsername(String username) {
+		return userRepository.findByUsername(username);
+	}
+
 	private boolean emailExists(String email) {
 		return userRepository.findByEmail(email) != null;
 	}

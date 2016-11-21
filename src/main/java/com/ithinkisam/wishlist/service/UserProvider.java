@@ -15,5 +15,7 @@ public interface UserProvider {
 	VerificationToken getVerificationToken(String token);
 	
 	void enableNewUser(String username);
+	
+	User getByUsername(String username);
 
 }

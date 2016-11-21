@@ -1,17 +1,114 @@
-<h1>Home Page</h1>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tristique aliquet libero eget maximus. Vivamus scelerisque rutrum commodo. Vestibulum finibus nisi at erat lacinia, a egestas ligula aliquet. Nam ex sapien, pretium rutrum ultricies sit amet, condimentum sit amet purus. Nulla metus ante, iaculis sit amet tellus sit amet, feugiat ullamcorper nibh. In facilisis ligula ac dui ullamcorper, non vestibulum augue pretium. Aenean commodo commodo molestie. Maecenas consequat volutpat ultricies. Aenean eu faucibus tortor. Aenean condimentum sem quis molestie ultricies. Praesent molestie luctus felis ut aliquet. Fusce elementum sapien mi, et congue est pulvinar ut. Quisque venenatis lobortis nunc egestas egestas. Aliquam blandit erat sit amet dui sodales, eget ornare justo mollis. Aliquam ex augue, bibendum ut malesuada sed, porta quis elit.
-</p>
-<p>
-Ut eget accumsan enim. Duis rutrum enim malesuada urna consequat, a scelerisque orci bibendum. Vestibulum sagittis finibus sapien. Fusce erat tellus, feugiat a feugiat sit amet, malesuada ac diam. Donec et augue eget turpis bibendum blandit. Donec vel pretium tellus. Praesent id lacus tellus. Maecenas ac imperdiet risus, sit amet rutrum metus. Ut aliquet at turpis vitae lacinia. Etiam in ipsum dignissim, pellentesque massa eget, efficitur ligula. Aliquam erat volutpat. Curabitur dapibus urna eget tempor tincidunt.
-</p>
-<p>
-Aliquam accumsan lacus vel felis fermentum laoreet. Aenean bibendum sem eu est iaculis, quis mollis eros tempus. Etiam et dui velit. Maecenas condimentum orci et nisi maximus, nec dictum arcu ultricies. Nulla maximus ex a tellus tempus, ac sagittis risus placerat. In pretium ipsum vel cursus aliquet. Integer malesuada nisi quis elit interdum luctus. Etiam elementum purus dui, dignissim tempor tellus consequat imperdiet. Aliquam aliquet nulla sit amet tellus volutpat viverra. Proin mollis urna in orci porttitor, sit amet convallis odio aliquam. Praesent placerat auctor sem, vel vulputate libero pellentesque vel.
-</p>
-<p>
-Maecenas non ultricies nunc. Aliquam volutpat ipsum sed urna bibendum, eget dictum magna gravida. Proin fringilla auctor ex, eget semper purus fermentum non. Aliquam consectetur urna metus. Maecenas interdum fermentum quam ac dapibus. Sed in sodales dolor. Phasellus et enim elit. Quisque felis tortor, lacinia non sagittis nec, tristique vitae eros.
-</p>
-<p>
-Vestibulum efficitur viverra lobortis. Donec ornare leo varius, scelerisque dui nec, maximus erat. Integer in leo convallis, tempus ex et, tempor lorem. Suspendisse congue viverra est, sit amet efficitur sapien rhoncus nec. Praesent ultrices consectetur nibh sed elementum. Nam varius magna dui, quis auctor eros consectetur a. Nullam scelerisque mollis massa vitae molestie. In et massa metus. In turpis enim, semper ac venenatis a, dictum a erat. Suspendisse potenti. Fusce tristique massa ac massa luctus rutrum. Duis congue libero a ante accumsan eleifend. Etiam aliquam ex at quam eleifend faucibus.
-</p>
+<h1>Dashboard</h1>
+
+<div class="row">
+	<div class="col-md-8">
+		<div class="jumbotron">
+			<h1 class="display-3">Welcome to Wishlist!</h1>
+			<p class="lead">Wishlist is a one-stop shop for all your gift
+				buying and Secret Santa-ing needs.</p>
+			<hr class="my-2">
+			<p>Use this form as a simple means of adding new wishes. Other uses will be able to see
+				your wishes and check them off once they've been purchased.</p>
+			<form:form class="form-inline text-xs-center" action="${pageContext.request.contextPath}/wishes" method="post">
+				<div class="form-group">
+					<label for="description" class="sr-only">Wish Description</label>
+					<input type="text" class="form-control form-control-lg" name="description" id="description" placeholder="Description">
+				</div>
+				<button type="submit" class="btn btn-primary btn-lg">Add Wish</button>
+			</form:form>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="list-group">
+			<button type="button"
+				class="list-group-item list-group-item-action active">Cras
+				justo odio</button>
+			<button type="button" class="list-group-item list-group-item-action">Dapibus
+				ac facilisis in</button>
+			<button type="button" class="list-group-item list-group-item-action">Morbi
+				leo risus</button>
+			<button type="button" class="list-group-item list-group-item-action">Porta
+				ac consectetur ac</button>
+			<button type="button"
+				class="list-group-item list-group-item-action disabled">Vestibulum
+				at eros</button>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+		<div class="card-columns">
+			<div class="card">
+				<div class="card-block">
+					<h4 class="card-title">Card title that wraps to a new line</h4>
+					<p class="card-text">This is a longer card with supporting text
+						below as a natural lead-in to additional content. This content is
+						a little bit longer.</p>
+				</div>
+			</div>
+			<div class="card card-block">
+				<blockquote class="card-blockquote">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+						Integer posuere erat a ante.</p>
+					<footer>
+						<small class="text-muted"> Someone famous in <cite
+							title="Source Title">Source Title</cite>
+						</small>
+					</footer>
+				</blockquote>
+			</div>
+			<div class="card">
+				<div class="card-block">
+					<h4 class="card-title">Card title</h4>
+					<p class="card-text">This card has supporting text below as a
+						natural lead-in to additional content.</p>
+					<p class="card-text">
+						<small class="text-muted">Last updated 3 mins ago</small>
+					</p>
+				</div>
+			</div>
+			<div class="card card-block card-inverse card-primary text-xs-center">
+				<blockquote class="card-blockquote">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+						Integer posuere erat.</p>
+					<footer>
+						<small> Someone famous in <cite title="Source Title">Source
+								Title</cite>
+						</small>
+					</footer>
+				</blockquote>
+			</div>
+			<div class="card card-block text-xs-center">
+				<h4 class="card-title">Card title</h4>
+				<p class="card-text">This card has supporting text below as a
+					natural lead-in to additional content.</p>
+				<p class="card-text">
+					<small class="text-muted">Last updated 3 mins ago</small>
+				</p>
+			</div>
+			<div class="card card-block text-xs-right">
+				<blockquote class="card-blockquote">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+						Integer posuere erat a ante.</p>
+					<footer>
+						<small class="text-muted"> Someone famous in <cite
+							title="Source Title">Source Title</cite>
+						</small>
+					</footer>
+				</blockquote>
+			</div>
+			<div class="card card-block">
+				<h4 class="card-title">Card title</h4>
+				<p class="card-text">This is a wider card with supporting text
+					below as a natural lead-in to additional content. This card has
+					even longer content than the first to show that equal height
+					action.</p>
+				<p class="card-text">
+					<small class="text-muted">Last updated 3 mins ago</small>
+				</p>
+			</div>
+		</div>
+</div>

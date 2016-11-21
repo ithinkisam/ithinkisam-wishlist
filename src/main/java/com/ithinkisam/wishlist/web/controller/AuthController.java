@@ -1,6 +1,7 @@
 package com.ithinkisam.wishlist.web.controller;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,8 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 
+import com.ithinkisam.wishlist.config._Constants;
 import com.ithinkisam.wishlist.domain.NewUser;
 import com.ithinkisam.wishlist.domain.User;
+import com.ithinkisam.wishlist.messaging.Message;
+import com.ithinkisam.wishlist.messaging.Severity;
 import com.ithinkisam.wishlist.security.VerificationToken;
 import com.ithinkisam.wishlist.service.UserProvider;
 import com.ithinkisam.wishlist.service.exception.EmailExistsException;
@@ -61,6 +65,7 @@ public class AuthController {
 	
 	@PostMapping("register")
 	public String registerNewUser(
+			@ModelAttribute(name = _Constants.MODEL_MESSAGES) List<Message> messages,
 			@ModelAttribute NewUser newUser,
 			BindingResult bindingResult,
 			WebRequest request) {
@@ -84,11 +89,13 @@ public class AuthController {
 			return "registration";
 		}
 		
-		return "redirect:/login?registered";
+		messages.add(new Message(Severity.SUCCESS, "registration.verify"));
+		return "redirect:/login";
 	}
 	
 	@GetMapping("/registrationConfirm")
 	public String confirmRegistration(
+			@ModelAttribute(name = _Constants.MODEL_MESSAGES) List<Message> messages,
 			@RequestParam("token") String token) {
 		
 		VerificationToken verificationToken = userProvider.getVerificationToken(token);
@@ -100,7 +107,8 @@ public class AuthController {
 		}
 		
 		userProvider.enableNewUser(verificationToken.getUser().getUsername());
-		return "redirect:/login?registrationConfirmed";
+		messages.add(new Message(Severity.SUCCESS, "registration.confirmed"));
+		return "redirect:/login";
 	}
 	
 	private User createUserAccount(NewUser newUser, BindingResult bindingResult) {
