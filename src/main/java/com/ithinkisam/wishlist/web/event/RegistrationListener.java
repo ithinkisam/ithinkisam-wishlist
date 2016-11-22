@@ -18,11 +18,11 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationC
     @Autowired
     private UserProvider userProvider;
     
-//    @Autowired
-//    private MessageSource messages;
+    @Autowired
+    private MessageSource messages;
     
-//    @Autowired
-//    private MailSender mailSender;
+    @Autowired
+    private MailSender mailSender;
  
     @Override
     public void onApplicationEvent(OnRegistrationCompleteEvent event) {
@@ -34,15 +34,17 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationC
         String token = UUID.randomUUID().toString();
         userProvider.createVerificationToken(user, token);
          
-//        String recipientAddress = user.getEmail();
-//        String subject = "Registration Confirmation";
-//        String confirmationUrl = event.getAppUrl() + "/regitrationConfirm?token=" + token;
-//        String message = messages.getMessage("message.regSucc", null, event.getLocale());
+        String recipientAddress = user.getEmail();
+        String subject = "Registration Confirmation";
+        String confirmationUrl = event.getAppUrl() + "/registrationConfirm?token=" + token;
+        String message = messages.getMessage("message.registration.success", null, event.getLocale());
          
-//        SimpleMailMessage email = new SimpleMailMessage();
-//        email.setTo(recipientAddress);
-//        email.setSubject(subject);
-//        email.setText(message + " rn" + event.getAppUrl() + confirmationUrl);
-//        mailSender.send(email);
+        SimpleMailMessage email = new SimpleMailMessage();
+        email.setTo(recipientAddress);
+        email.setSubject(subject);
+		email.setText("<p>" + message + "</p><p><a href=\"" + confirmationUrl
+				+ "\">Verify my email address</a></p><p>Copy and paste this into your browser if you are having issues with the link above</p><p>"
+				+ confirmationUrl + "</p>");
+        mailSender.send(email);
     }
 }

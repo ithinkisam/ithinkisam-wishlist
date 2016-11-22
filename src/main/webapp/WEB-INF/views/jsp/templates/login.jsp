@@ -1,7 +1,19 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <tiles:insertAttribute name="messages" />
+
+<c:if test="${not empty param.message}">
+<div class="row">
+	<div class="offset-lg-3 col-lg-6 offset-md-2 col-md-8 offset-sm-2 col-sm-8">
+		<div class="alert alert-${param.messageType} text-xs-center">
+			<spring:message code="message.login.${param.message}" text="Not sure what you did to get this message..." />
+		</div>
+	</div>
+</div>
+</c:if>
 
 <div class="row">
 	<div class="offset-lg-4 col-lg-4 offset-md-3 col-md-6 offset-sm-2 col-sm-8">

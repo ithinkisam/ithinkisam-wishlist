@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.context.request.WebRequest;
 
 import com.ithinkisam.wishlist.config._Constants;
 import com.ithinkisam.wishlist.domain.NewUser;
@@ -68,7 +67,7 @@ public class AuthController {
 			@ModelAttribute(name = _Constants.MODEL_MESSAGES) List<Message> messages,
 			@ModelAttribute NewUser newUser,
 			BindingResult bindingResult,
-			WebRequest request) {
+			HttpServletRequest request) {
 		
 		newUserValidator.validate(newUser, bindingResult);
 		if (bindingResult.hasErrors()) {
@@ -82,15 +81,15 @@ public class AuthController {
 		}
 		
 		try {
-			String appUrl = request.getContextPath();
-			eventPublisher.publishEvent(new OnRegistrationCompleteEvent(user, request.getLocale(), appUrl));
+			eventPublisher.publishEvent(new OnRegistrationCompleteEvent(user, request.getLocale(), System.getenv("APP_ROOT")));
 		} catch (Exception e) {
+			e.printStackTrace();
 			bindingResult.reject("auth.registrationError");
 			return "registration";
 		}
 		
 		messages.add(new Message(Severity.SUCCESS, "registration.verify"));
-		return "redirect:/login";
+		return "redirect:/login?message=verifyRegistration&messageType=info";
 	}
 	
 	@GetMapping("/registrationConfirm")
@@ -100,15 +99,15 @@ public class AuthController {
 		
 		VerificationToken verificationToken = userProvider.getVerificationToken(token);
 		if (verificationToken == null) {
-			return "redirect:/login?tokenNotFound";
+			return "redirect:/login?message=tokenNotFound&messageType=danger";
 		}
 		if (verificationToken.getExpiryDate().isBefore(LocalDateTime.now())) {
-			return "redirect:/login?expired";
+			return "redirect:/login?message=tokenExpired&messageType=danger";
 		}
 		
 		userProvider.enableNewUser(verificationToken.getUser().getUsername());
 		messages.add(new Message(Severity.SUCCESS, "registration.confirmed"));
-		return "redirect:/login";
+		return "redirect:/login?message=registrationVerified&messageType=success";
 	}
 	
 	private User createUserAccount(NewUser newUser, BindingResult bindingResult) {

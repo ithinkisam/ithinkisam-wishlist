@@ -86,6 +86,7 @@ dependencies {
     
     // Email
     compile 'com.sun.mail:javax.mail:1.5.6'
+    compile 'com.sendgrid:sendgrid-java:3.0.9'
     
     // Testing
     testCompile 'junit:junit:4.12'
