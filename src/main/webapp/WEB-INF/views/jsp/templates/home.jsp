@@ -3,19 +3,12 @@
 
 <h1>Dashboard</h1>
 
-<div class="row">
-  	<div class="col-sm-6">
-	    <div class="card card-block text-xs-center">
-	      	<h3 class="card-title">For myself...</h3>
-	      	<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-	      	<a href="#" class="btn btn-primary">My Wishlist</a>
-	    </div>
-  	</div>
-  	<div class="col-sm-6">
-	    <div class="card card-block text-xs-center">
-	      	<h3 class="card-title">For others...</h3>
-	      	<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-	      	<a href="#" class="btn btn-primary">My BuyList</a>
-	    </div>
-  	</div>
+<div class="jumbotron">
+  	<h1 class="display-3">Welcome to Wishlist!</h1>
+  	<p class="lead">Wishlist is a one-stop shop for all your gift buying and Secret Santa-ing needs.</p>
+  	<hr class="my-2">
+  	<p>This site is still under construction, but we're pushing things out as we're ready! See below for available options.</p>
+  	<p class="lead">
+    	<a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/wishes" role="button">Manage My Wishlist</a>
+  	</p>
 </div>
