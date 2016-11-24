@@ -48,6 +48,7 @@ dependencies {
     // Spring security
     compile 'org.springframework.security:spring-security-web:4.2.0.RELEASE'
 	compile 'org.springframework.security:spring-security-config:4.2.0.RELEASE'
+	compile 'org.springframework.security:spring-security-taglibs:4.2.0.RELEASE'
     
     // Embedded runtime server
     compile 'com.github.jsimone:webapp-runner:8.5.5.2'

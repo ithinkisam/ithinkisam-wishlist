@@ -21,4 +21,6 @@ public interface WishProvider {
 	
 	void unfulfill(Wish wish, User user);
 	
+	void remove(int id, User user);
+	
 }

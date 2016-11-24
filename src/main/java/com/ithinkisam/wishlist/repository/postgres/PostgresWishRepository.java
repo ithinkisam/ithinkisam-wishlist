@@ -31,7 +31,7 @@ public class PostgresWishRepository extends AbstractPostgresRepository implement
 
 	@Override
 	public List<Wish> findByUser(String username) {
-		String sql = "select * from wishes where username = :username";
+		String sql = "select * from wishes where username = :username order by wid";
 		
 		SqlParameterSource parameters = new MapSqlParameterSource()
 				.addValue("username", username);
@@ -41,7 +41,7 @@ public class PostgresWishRepository extends AbstractPostgresRepository implement
 
 	@Override
 	public List<Wish> findByFulfiller(String username) {
-		String sql = "select * from wishes where fulfiller = :username";
+		String sql = "select * from wishes where fulfiller = :username order by wid";
 		
 		SqlParameterSource parameters = new MapSqlParameterSource()
 				.addValue("username", username);
@@ -64,7 +64,7 @@ public class PostgresWishRepository extends AbstractPostgresRepository implement
 
 	@Override
 	public void update(int id, String description) {
-		String sql = "update wishes set description = :description where wid = :id)";
+		String sql = "update wishes set description = :description where wid = :id";
 		
 		SqlParameterSource parameters = new MapSqlParameterSource()
 				.addValue("description", description)
@@ -75,7 +75,7 @@ public class PostgresWishRepository extends AbstractPostgresRepository implement
 
 	@Override
 	public void fulfill(int id, String username) {
-		String sql = "update wishes set fulfiller = :username where wid = :id)";
+		String sql = "update wishes set fulfiller = :username where wid = :id";
 		
 		SqlParameterSource parameters = new MapSqlParameterSource()
 				.addValue("username", username)
@@ -86,7 +86,17 @@ public class PostgresWishRepository extends AbstractPostgresRepository implement
 
 	@Override
 	public void unfulfill(int id) {
-		String sql = "update wishes set fulfiller = null where wid = :id)";
+		String sql = "update wishes set fulfiller = null where wid = :id";
+		
+		SqlParameterSource parameters = new MapSqlParameterSource()
+				.addValue("id", id);
+		
+		jdbcTemplate.update(sql, parameters);
+	}
+
+	@Override
+	public void remove(int id) {
+		String sql = "delete from wishes where wid = :id";
 		
 		SqlParameterSource parameters = new MapSqlParameterSource()
 				.addValue("id", id);

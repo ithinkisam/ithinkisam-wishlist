@@ -20,4 +20,6 @@ public interface WishRepository {
 	
 	void unfulfill(int id);
 	
+	void remove(int id);
+	
 }

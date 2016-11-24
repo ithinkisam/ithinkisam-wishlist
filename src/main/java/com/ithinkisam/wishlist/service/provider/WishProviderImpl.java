@@ -77,4 +77,17 @@ public class WishProviderImpl implements WishProvider {
 		wishRepository.unfulfill(wish.getId());
 	}
 
+	@Override
+	public void remove(int id, User user) {
+		Wish existing = wishRepository.findById(id);
+		if (existing == null) {
+			// TODO throw exception
+		}
+		if (!existing.getUsername().equals(user.getUsername())) {
+			// TODO throw exeception
+			// cannot delete other's wish
+		}
+		wishRepository.remove(id);
+	}
+
 }
