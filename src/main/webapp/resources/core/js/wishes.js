@@ -37,4 +37,34 @@ $(function() {
 		modal.find('#confirmDeleteID').val(wishId);
 	});
 	
+	$('a.wish-tag').popover({
+		trigger: 'click',
+		html: true,
+		placement: 'top',
+		content: function() {
+			$('#tag-add-content input[name="wishId"]').val($(this).data('wish-id'));
+			return $('#tag-add-content').html();
+		}
+	}).on('shown.bs.popover', function() {
+		var popoverTrigger = $(this);
+		var popoverInput = $('#' + $(this).attr('aria-describedby')).find('input');
+		popoverInput.focus();
+		popoverInput.blur(function() {
+			popoverTrigger.popover('hide');
+		})
+	});
+	
+	$('a.tag-manage').popover({
+		trigger: 'focus',
+		html: true,
+		placement: 'top',
+		content: function() {
+			console.log("THIS");
+			$('#tag-manage-content input[name="wishId"]').val($(this).data('wish-id'));
+			$('#tag-manage-content input[name="url"]').val($(this).data('tag'));
+			$('#tag-manage-content a').attr("href", $(this).data('tag'));
+			return $('#tag-manage-content').html();
+		}
+	});
+	
 });

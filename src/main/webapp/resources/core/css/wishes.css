@@ -1,0 +1,8 @@
+
+.wish-tag {
+	background-color: #ccc;
+}
+.wish-tag:hover {
+	background-color: #aaa;
+	cursor: pointer;
+}

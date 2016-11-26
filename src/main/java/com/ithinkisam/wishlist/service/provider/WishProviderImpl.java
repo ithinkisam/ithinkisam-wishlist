@@ -1,5 +1,6 @@
 package com.ithinkisam.wishlist.service.provider;
 
+import java.net.URL;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,17 +22,17 @@ public class WishProviderImpl implements WishProvider {
 
 	@Override
 	public Wish getById(int id) {
-		return wishRepository.findById(id);
+		return populateTags(wishRepository.findById(id));
 	}
 
 	@Override
 	public List<Wish> getByUser(User user) {
-		return wishRepository.findByUser(user.getUsername());
+		return populateTags(wishRepository.findByUser(user.getUsername()));
 	}
 
 	@Override
 	public List<Wish> getByFulfiller(User user) {
-		return wishRepository.findByFulfiller(user.getUsername());
+		return populateTags(wishRepository.findByFulfiller(user.getUsername()));
 	}
 
 	@Override
@@ -88,6 +89,46 @@ public class WishProviderImpl implements WishProvider {
 			// cannot delete other's wish
 		}
 		wishRepository.remove(id);
+	}
+
+	@Override
+	public void addTag(URL url, int wishId, User user) {
+		Wish existing = wishRepository.findById(wishId);
+		if (existing == null) {
+			// TODO throw exception
+		}
+		if (!existing.getUsername().equals(user.getUsername())) {
+			// TODO throw exception
+			// cannot add tag to other's wish
+		}
+		wishRepository.addTag(wishId, url);
+	}
+
+	@Override
+	public void removeTag(URL url, int wishId, User user) {
+		Wish existing = wishRepository.findById(wishId);
+		if (existing == null) {
+			// TODO throw exception
+		}
+		if (!existing.getUsername().equals(user.getUsername())) {
+			// TODO throw exception
+			// cannot add tag to other's wish
+		}
+		wishRepository.removeTag(wishId, url);
+	}
+	
+	private List<Wish> populateTags(List<Wish> wishes) {
+		if (wishes == null) { return null; }
+		for (Wish wish : wishes) {
+			populateTags(wish);
+		}
+		return wishes;
+	}
+	
+	private Wish populateTags(Wish wish) {
+		if (wish == null) { return null; }
+		wish.setTags(wishRepository.findTagsByWish(wish.getId()));
+		return wish;
 	}
 
 }

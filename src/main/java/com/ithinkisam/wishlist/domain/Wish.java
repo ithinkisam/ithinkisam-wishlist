@@ -1,7 +1,7 @@
 package com.ithinkisam.wishlist.domain;
 
 import java.net.URL;
-import java.util.Set;
+import java.util.List;
 
 public class Wish {
 
@@ -9,7 +9,7 @@ public class Wish {
 	private String username;
 	private String description;
 	private boolean purchased;
-	private Set<URL> tips;
+	private List<URL> tags;
 
 	public Wish() {
 		/* empty */
@@ -83,18 +83,18 @@ public class Wish {
 	}
 
 	/**
-	 * @return the tips
+	 * @return the tags
 	 */
-	public Set<URL> getTips() {
-		return tips;
+	public List<URL> getTags() {
+		return tags;
 	}
 
 	/**
-	 * @param tips
-	 *            the tips to set
+	 * @param tags
+	 *            the tags to set
 	 */
-	public void setTips(Set<URL> tips) {
-		this.tips = tips;
+	public void setTags(List<URL> tags) {
+		this.tags = tags;
 	}
 
 	/*
@@ -136,7 +136,7 @@ public class Wish {
 	 */
 	@Override
 	public String toString() {
-		return "Wish [id=" + id + ", username=" + username + ", description=" + description + ", tips=" + tips + "]";
+		return "Wish [id=" + id + ", username=" + username + ", description=" + description + ", tags=" + tags + "]";
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.ithinkisam.wishlist.service;
 
+import java.net.URL;
 import java.util.List;
 
 import com.ithinkisam.wishlist.domain.User;
@@ -22,5 +23,9 @@ public interface WishProvider {
 	void unfulfill(Wish wish, User user);
 	
 	void remove(int id, User user);
+	
+	void addTag(URL url, int wishId, User user);
+	
+	void removeTag(URL url, int wishId, User user);
 	
 }

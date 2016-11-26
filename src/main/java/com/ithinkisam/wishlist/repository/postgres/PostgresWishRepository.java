@@ -1,8 +1,13 @@
 package com.ithinkisam.wishlist.repository.postgres;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -102,6 +107,48 @@ public class PostgresWishRepository extends AbstractPostgresRepository implement
 				.addValue("id", id);
 		
 		jdbcTemplate.update(sql, parameters);
+	}
+
+	@Override
+	public void addTag(int wishId, URL tag) {
+		String sql = "insert into tags (wid, tag) values (:wishId, :tag)";
+		
+		SqlParameterSource parameters = new MapSqlParameterSource()
+				.addValue("wishId", wishId)
+				.addValue("tag", tag.toExternalForm());
+		
+		jdbcTemplate.update(sql, parameters);
+	}
+
+	@Override
+	public void removeTag(int wishId, URL tag) {
+		String sql = "delete from tags where wid = :wishId and tag = :tag";
+		
+		SqlParameterSource parameters = new MapSqlParameterSource()
+				.addValue("wishId", wishId)
+				.addValue("tag", tag.toExternalForm());
+		
+		jdbcTemplate.update(sql, parameters);
+	}
+
+	@Override
+	public List<URL> findTagsByWish(int wishId) {
+		String sql = "select tag from tags where wid = :wishId";
+		
+		SqlParameterSource parameters = new MapSqlParameterSource()
+				.addValue("wishId", wishId);
+		
+		return jdbcTemplate.query(sql, parameters, new RowMapper<URL>() {
+			@Override
+			public URL mapRow(ResultSet rs, int i) throws SQLException {
+				try {
+					return new URL(rs.getString("tag"));
+				} catch (MalformedURLException e) {
+					e.printStackTrace();
+					return null;
+				}
+			}
+		});
 	}
 
 }

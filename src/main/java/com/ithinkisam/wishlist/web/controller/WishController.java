@@ -1,5 +1,7 @@
 package com.ithinkisam.wishlist.web.controller;
 
+import java.net.URL;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
-
 import com.ithinkisam.wishlist.domain.User;
 import com.ithinkisam.wishlist.domain.Wish;
 import com.ithinkisam.wishlist.service.UserProvider;
@@ -25,8 +26,7 @@ public class WishController {
 	@GetMapping
 	public String showWishes(Model model, WebRequest request) {
 		User user = userProvider.getByUsername(request.getUserPrincipal().getName());
-		model.addAttribute("wishes", wishProvider.getByUser(user));
-		return "wishes";
+		return view(model, user);
 	}
 	
 	@PostMapping
@@ -34,8 +34,7 @@ public class WishController {
 			@RequestParam("description") String description) {
 		User user = userProvider.getByUsername(request.getUserPrincipal().getName());
 		wishProvider.add(description, user);
-		model.addAttribute("wishes", wishProvider.getByUser(user));
-		return "wishes";
+		return view(model, user);
 	}
 	
 	@PostMapping("/delete")
@@ -43,8 +42,7 @@ public class WishController {
 			@RequestParam("id") Integer wishId) {
 		User user = userProvider.getByUsername(request.getUserPrincipal().getName());
 		wishProvider.remove(wishId, user);
-		model.addAttribute("wishes", wishProvider.getByUser(user));
-		return "wishes";
+		return view(model, user);
 	}
 	
 	@PostMapping("/update")
@@ -59,4 +57,26 @@ public class WishController {
 		return "OK";
 	}
 	
+	@PostMapping("/tag/add")
+	public String addTag(Model model, WebRequest request,
+			@RequestParam("wishId") Integer wishId,
+			@RequestParam("url") URL url) {
+		User user = userProvider.getByUsername(request.getUserPrincipal().getName());
+		wishProvider.addTag(url, wishId, user);
+		return "redirect:/wishes";
+	}
+	
+	@PostMapping("/tag/remove")
+	public String removeTag(Model model, WebRequest request,
+			@RequestParam("wishId") Integer wishId,
+			@RequestParam("url") URL url) {
+		User user = userProvider.getByUsername(request.getUserPrincipal().getName());
+		wishProvider.removeTag(url, wishId, user);
+		return "redirect:/wishes";
+	}
+	
+	private String view(Model model, User user) {
+		model.addAttribute("wishes", wishProvider.getByUser(user));
+		return "wishes";
+	}
 }
