@@ -42,7 +42,6 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationC
          
         SimpleMailMessage email = new SimpleMailMessage();
         email.setTo(recipientAddress);
-        email.setBcc("ithinkisam@gmail.com");
         email.setSubject(subject);
 		email.setText("<p>" + message + "</p><p><a href=\"" + confirmationUrl
 				+ "\">Verify my email address</a></p><p>Copy and paste this into your browser if you are having issues with the link above</p><p>"
