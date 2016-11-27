@@ -8,7 +8,8 @@
   	<p class="lead">Wishlist is a one-stop shop for all your gift buying and Secret Santa-ing needs.</p>
   	<hr class="my-2">
   	<p>This site is still under construction, but we're pushing things out as we're ready! See below for available options.</p>
-  	<p class="lead">
-    	<a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/wishes" role="button">Manage My Wishlist</a>
-  	</p>
+	<p>
+		<a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/wishes" role="button">Manage My Wishlist</a>
+		<a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/events" role="button">Manage My Events</a>
+	</p>
 </div>
