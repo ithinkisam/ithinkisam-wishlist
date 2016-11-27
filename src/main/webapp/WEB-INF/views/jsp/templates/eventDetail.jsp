@@ -40,6 +40,9 @@
 								</tr>
 							</thead>
 							<tbody>
+							<c:if test="${empty lists[member.username]}">
+								<tr><td colspan="3">This user hasn't added any wishes to their list.</td></tr>
+							</c:if>
 							<c:forEach var="wish" items="${lists[member.username]}">
 								<tr class="${wish.purchased and wish.purchaser == user.username ? 'table-success' : 
 											 wish.purchased and wish.purchaser != user.username ? 'table-danger' : ''}">

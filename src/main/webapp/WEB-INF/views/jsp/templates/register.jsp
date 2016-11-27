@@ -35,6 +35,10 @@
 				<form:input type="password" class="form-control" path="matchingPassword" placeholder="Confirm Password" />
 			</div>
 			
+			<p><strong>Important Note:</strong> The connection on this site is not secure! Your password is not encrypted
+				until it reaches our servers, so <strong>PLEASE</strong> do not use a password that you use for important
+				sites (bank accounts, retail sites, etc).</p>
+			
 			<div class="form-group row">
 				<button type="submit" class="btn btn-primary btn-block">Sign up!</button>
 			</div>
