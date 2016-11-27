@@ -14,6 +14,8 @@ public interface EventRepository {
 
 	List<String> findMembers(int eventId);
 	
+	List<String> findConfirmedMembers(int eventId);
+	
 	List<Event> findEventInvitations(String username);
 
 	Event save(Event event);

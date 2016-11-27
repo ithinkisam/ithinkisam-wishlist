@@ -8,7 +8,7 @@ import com.ithinkisam.wishlist.domain.User;
 
 public interface EventProvider {
 
-	Event getById(int id);
+	Event getById(int id, boolean confirmedOnly);
 	
 	List<Event> getByAdministrator(User user);
 	

@@ -29,10 +29,10 @@ public class EventProviderImpl implements EventProvider {
 	private UserProvider userProvider;
 	
 	@Override
-	public Event getById(int id) {
+	public Event getById(int id, boolean confirmedOnly) {
 		Event event = eventRepository.findById(id);
 		event.setAdmin(userProvider.getByUsername(event.getAdmin().getUsername()));
-		event.setMembers(getMembers(id));
+		event.setMembers(getMembers(id, confirmedOnly));
 		return event;
 	}
 
@@ -41,7 +41,7 @@ public class EventProviderImpl implements EventProvider {
 		List<Event> events = eventRepository.findByAdministration(user.getUsername());
 		for (Event event : events) {
 			event.setAdmin(userProvider.getByUsername(event.getAdmin().getUsername()));
-			event.setMembers(getMembers(event.getId()));
+			event.setMembers(getMembers(event.getId(), false));
 		}
 		return events;
 	}
@@ -51,7 +51,7 @@ public class EventProviderImpl implements EventProvider {
 		List<Event> events = eventRepository.findByMember(user.getUsername());
 		for (Event event : events) {
 			event.setAdmin(userProvider.getByUsername(event.getAdmin().getUsername()));
-			event.setMembers(getMembers(event.getId()));
+			event.setMembers(getMembers(event.getId(), true));
 		}
 		return events;
 	}
@@ -61,7 +61,7 @@ public class EventProviderImpl implements EventProvider {
 		List<Event> events = eventRepository.findEventInvitations(user.getUsername());
 		for (Event event : events) {
 			event.setAdmin(userProvider.getByUsername(event.getAdmin().getUsername()));
-			event.setMembers(getMembers(event.getId()));
+			event.setMembers(getMembers(event.getId(), true));
 		}
 		return events;
 	}
@@ -126,9 +126,9 @@ public class EventProviderImpl implements EventProvider {
 		eventRepository.removeMember(event.getId(), user.getUsername());
 	}
 	
-	private Set<User> getMembers(int id) {
+	private Set<User> getMembers(int id, boolean confirmedOnly) {
 		Set<User> members = new TreeSet<User>();
-		for (String username : eventRepository.findMembers(id)) {
+		for (String username : confirmedOnly ? eventRepository.findConfirmedMembers(id) : eventRepository.findMembers(id)) {
 			members.add(userProvider.getByUsername(username));
 		}
 		return members;

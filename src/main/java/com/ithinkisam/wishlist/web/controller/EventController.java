@@ -55,7 +55,7 @@ public class EventController {
 	public String showEventDetail(Model model, WebRequest request,
 			@PathVariable("id") Integer id) {
 		User user = userProvider.getByUsername(request.getUserPrincipal().getName());
-		Event event = eventProvider.getById(id);
+		Event event = eventProvider.getById(id, true);
 		model.addAttribute("event", event);
 		model.addAttribute("user", user);
 		
@@ -76,7 +76,7 @@ public class EventController {
 	public String joinEvent(WebRequest request,
 			@PathVariable("id") Integer id) {
 		User user = userProvider.getByUsername(request.getUserPrincipal().getName());
-		Event event = eventProvider.getById(id);
+		Event event = eventProvider.getById(id, true);
 		eventProvider.confirmMembership(event, user);
 		return "redirect:/events/" + id;
 	}
@@ -85,7 +85,7 @@ public class EventController {
 	public String rejectEvent(WebRequest request,
 			@PathVariable("id") Integer id) {
 		User user = userProvider.getByUsername(request.getUserPrincipal().getName());
-		Event event = eventProvider.getById(id);
+		Event event = eventProvider.getById(id, true);
 		eventProvider.rejectMembership(event, user);
 		return "redirect:/events";
 	}
@@ -99,7 +99,7 @@ public class EventController {
 		if (member == null) {
 			return "redirect:/events?error=userNotFound";
 		}
-		Event event = eventProvider.getById(id);
+		Event event = eventProvider.getById(id, true);
 		eventProvider.addMember(event, member, admin);
 		return "redirect:/events";
 	}
@@ -113,7 +113,7 @@ public class EventController {
 		if (member == null) {
 			return "redirect:/events?error=userNotFound";
 		}
-		Event event = eventProvider.getById(id);
+		Event event = eventProvider.getById(id, true);
 		eventProvider.removeMember(event, member, admin);
 		return "redirect:/events";
 	}

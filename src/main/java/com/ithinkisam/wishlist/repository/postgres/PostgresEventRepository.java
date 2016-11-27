@@ -74,6 +74,21 @@ public class PostgresEventRepository extends AbstractPostgresRepository implemen
 			}
 		});
 	}
+	
+	@Override
+	public List<String> findConfirmedMembers(int eventId) {
+		String sql = "select member from event_members where eid = :eventId and confirmed is not null";
+		
+		SqlParameterSource parameters = new MapSqlParameterSource()
+				.addValue("eventId", eventId);
+		
+		return jdbcTemplate.query(sql, parameters, new RowMapper<String>() {
+			@Override
+			public String mapRow(ResultSet rs, int i) throws SQLException {
+				return rs.getString("member");
+			}
+		});
+	}
 
 	@Override
 	public List<Event> findEventInvitations(String username) {
