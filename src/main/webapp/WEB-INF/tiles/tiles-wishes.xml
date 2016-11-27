@@ -7,8 +7,11 @@
 	<definition name="wishes" extends="base">
 		<put-attribute name="title" value="Wishes" />
 		<put-attribute name="content" value="/WEB-INF/views/jsp/templates/wishes.jsp" />
-		<put-list-attribute name="appJavascripts">
+		<put-list-attribute inherit="true" name="appJavascripts">
 			<add-attribute value="/resources/core/js/wishes.js" />
+		</put-list-attribute>
+		<put-list-attribute inherit="true" name="appStylesheets">
+			<add-attribute value="/resources/core/css/wishes.css" />
 		</put-list-attribute>
 	</definition>
 	

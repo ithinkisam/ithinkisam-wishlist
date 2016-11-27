@@ -9,17 +9,19 @@ public class Wish {
 	private String username;
 	private String description;
 	private boolean purchased;
+	private String purchaser;
 	private List<URL> tags;
 
 	public Wish() {
 		/* empty */
 	}
 
-	public Wish(int id, String username, String description, boolean purchased) {
+	public Wish(int id, String username, String description, boolean purchased, String purchaser) {
 		this.id = id;
 		this.username = username;
 		this.description = description;
 		this.purchased = purchased;
+		this.purchaser = purchaser;
 	}
 
 	/**
@@ -83,6 +85,21 @@ public class Wish {
 	}
 
 	/**
+	 * @return the purchaser
+	 */
+	public String getPurchaser() {
+		return purchaser;
+	}
+
+	/**
+	 * @param purchaser
+	 *            the purchaser to set
+	 */
+	public void setPurchaser(String purchaser) {
+		this.purchaser = purchaser;
+	}
+
+	/**
 	 * @return the tags
 	 */
 	public List<URL> getTags() {
@@ -136,7 +153,8 @@ public class Wish {
 	 */
 	@Override
 	public String toString() {
-		return "Wish [id=" + id + ", username=" + username + ", description=" + description + ", tags=" + tags + "]";
+		return "Wish [id=" + id + ", username=" + username + ", description=" + description + ", purchased=" + purchased
+				+ ", purchaser=" + purchaser + ", tags=" + tags + "]";
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.ithinkisam.wishlist.web.event;
+package com.ithinkisam.wishlist.web.event.listener;
 
 import java.util.UUID;
 
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.ithinkisam.wishlist.domain.User;
 import com.ithinkisam.wishlist.service.UserProvider;
+import com.ithinkisam.wishlist.web.event.OnRegistrationCompleteEvent;
 
 @Component
 public class RegistrationListener implements ApplicationListener<OnRegistrationCompleteEvent> {

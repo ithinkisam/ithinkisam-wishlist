@@ -2,7 +2,7 @@ package com.ithinkisam.wishlist.domain;
 
 import java.util.List;
 
-public class User {
+public class User implements Comparable<User> {
 
 	private String username;
 	private String password;
@@ -173,6 +173,11 @@ public class User {
 	public String toString() {
 		return "User [username=" + username + ", password=" + password + ", firstName=" + firstName + ", lastName="
 				+ lastName + ", email=" + email + ", enabled=" + enabled + ", roles=" + roles + "]";
+	}
+
+	@Override
+	public int compareTo(User o) {
+		return this.username.compareTo(o.username);
 	}
 
 }

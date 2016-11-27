@@ -3,7 +3,7 @@
 
 <form:form class="mt-2 pb-2" action="${pageContext.request.contextPath}/wishes" method="post">
 	<div class="input-group">
-		<input type="text" id="description" name="description" class="form-control form-control-lg"
+		<input type="text" id="description" name="description" class="form-control form-control-lg" autofocus
 				placeholder="Enter a wish description..." aria-label="Wish description text input">
 		<span class="input-group-btn">
 			<input type="submit" class="btn btn-primary btn-lg" value="Add Wish">
@@ -20,6 +20,9 @@
 		</tr>
 	</thead>
 	<tbody>
+		<c:if test="${empty wishes}">
+			<tr><td colspan="3">You don't have any wishes! Use the form at the top of this page to add them.</td></tr>
+		</c:if>
 		<c:forEach var="wish" items="${wishes}">
 		<tr>
 			<td class="wish-col">

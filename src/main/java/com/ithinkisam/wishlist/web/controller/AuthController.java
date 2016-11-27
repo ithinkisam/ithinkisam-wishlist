@@ -49,7 +49,10 @@ public class AuthController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(AuthController.class);
 	
 	@RequestMapping("/login")
-	public String showLoginForm() {
+	public String showLoginForm(HttpServletRequest request) {
+		if (request.isUserInRole("USER")) {
+		return "redirect:/";
+	}
 		return "login";
 	}
 	

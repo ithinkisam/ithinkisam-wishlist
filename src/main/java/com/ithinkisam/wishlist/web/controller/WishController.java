@@ -34,7 +34,7 @@ public class WishController {
 			@RequestParam("description") String description) {
 		User user = userProvider.getByUsername(request.getUserPrincipal().getName());
 		wishProvider.add(description, user);
-		return view(model, user);
+		return "redirect:/wishes";
 	}
 	
 	@PostMapping("/delete")
@@ -42,7 +42,7 @@ public class WishController {
 			@RequestParam("id") Integer wishId) {
 		User user = userProvider.getByUsername(request.getUserPrincipal().getName());
 		wishProvider.remove(wishId, user);
-		return view(model, user);
+		return "redirect:/wishes";
 	}
 	
 	@PostMapping("/update")
