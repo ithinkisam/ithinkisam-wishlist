@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.ithinkisam.wishlist.config._Constants;
@@ -15,6 +16,11 @@ public class AdviceController {
 	@ModelAttribute(name = _Constants.MODEL_MESSAGES)
 	public List<Message> getMessages() {
 		return new ArrayList<Message>();
+	}
+	
+	@ExceptionHandler
+	public String handleException(Exception e) {
+		return "500";
 	}
 
 }

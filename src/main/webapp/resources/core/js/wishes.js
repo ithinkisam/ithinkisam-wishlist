@@ -6,12 +6,14 @@ $(function() {
         xhr.setRequestHeader(header, token);
     });
 	
-	$('.wish-col').click(function() {
-		var description = $(this).find('.desc-plain').html();
-		$(this).find('.desc-plain').hide();
-		$(this).find('.desc-form input').val(description);
-		$(this).find('.desc-form').show();
-		$(this).find('.desc-form input').focus();
+	$('.wish-col').click(function(e) {
+		if (!$(this).find('.desc-form input').is(':focus')) {
+			var description = $(this).find('.desc-plain').html();
+			$(this).find('.desc-plain').hide();
+			$(this).find('.desc-form input').val(description);
+			$(this).find('.desc-form').show();
+			$(this).find('.desc-form input:not(:focus)').focus();
+		}
 	});
 	
 	$('.desc-form input').blur(function() {

@@ -6,7 +6,7 @@
 		<input type="text" id="description" name="description" class="form-control form-control-lg"
 				placeholder="Enter a wish description..." aria-label="Wish description text input">
 		<span class="input-group-btn">
-			<button class="btn btn-primary btn-lg" type="button">Add Wish</button>
+			<input type="submit" class="btn btn-primary btn-lg" value="Add Wish">
 		</span>
 	</div>
 </form:form>
