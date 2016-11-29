@@ -16,7 +16,7 @@
 				<c:if test="${member.username != user.username}">
 					<li class="nav-item">
 						<a class="nav-link ${navLinkClass}" data-toggle="pill" href="#user-${member.username}">
-							${member.username}
+							${member.firstName} (${member.username})
 						</a>
 					</li>
 					<c:set var="navLinkClass" value="" />
